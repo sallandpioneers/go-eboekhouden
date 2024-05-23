@@ -9,8 +9,8 @@ import (
 
 	"github.com/hooklift/gowsdl/soap"
 
-	"git.sallandpioneers.com/sallandpioneers/go-eboekhouden/config"
-	eboekhouden "git.sallandpioneers.com/sallandpioneers/go-eboekhouden/generated"
+	"github.com/sallandpioneers/go-eboekhouden/config"
+	eboekhouden "github.com/sallandpioneers/go-eboekhouden/generated"
 )
 
 var (

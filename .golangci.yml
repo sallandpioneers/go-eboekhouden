@@ -15,7 +15,7 @@ linters-settings:
   lll:
     line-length: 140
   goimports:
-    local-prefixes: git.sallandpioneers.com/sallandpioneers/go-eboekhouden
+    local-prefixes: github.com/sallandpioneers/go-eboekhouden
   gocritic:
     enabled-tags:
       - diagnostic
@@ -50,7 +50,7 @@ linters-settings:
     sections:
       - standard # Standard section: captures all standard packages.
       - default # Default section: contains all imports that could not be matched to another section type.
-      - prefix(git.sallandpioneers.com/sallandpioneers/go-eboekhouden)
+      - prefix(github.com/sallandpioneers/go-eboekhouden)
   wsl: 
     allow-cuddle-declarations: true
 linters:

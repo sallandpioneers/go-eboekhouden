@@ -7,8 +7,8 @@ import (
 
 	"github.com/hooklift/gowsdl/soap"
 
-	eboekhouden "git.sallandpioneers.com/sallandpioneers/go-eboekhouden/generated"
-	"git.sallandpioneers.com/sallandpioneers/go-eboekhouden/model"
+	eboekhouden "github.com/sallandpioneers/go-eboekhouden/generated"
+	"github.com/sallandpioneers/go-eboekhouden/model"
 )
 
 func (service *Eboekhouden) CustomerCreate(ctx context.Context, customer *model.Customer) error {
