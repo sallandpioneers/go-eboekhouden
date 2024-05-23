@@ -5,5 +5,5 @@ wsdl:
 
 .PHONY: lint
 lint:
-	# golangci-lint run --new-from-rev $(git rev-parse origin/master)
-	golangci-lint run
+	golangci-lint run --new-from-rev $(git rev-parse origin/master)
+	# golangci-lint run
