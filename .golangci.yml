@@ -1,0 +1,156 @@
+linters-settings:
+  gocognit:
+    min-complexity: 15
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  misspell:
+    locale: US
+    ignore-words:
+      - relatie
+      - mutatie
+      - adres
+  lll:
+    line-length: 140
+  goimports:
+    local-prefixes: git.sallandpioneers.com/sallandpioneers/go-eboekhouden
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - wrapperFunc
+      - dupImport # https://github.com/go-critic/go-critic/issues/845
+      - ifElseChain
+      - octalLiteral
+      - sloppyReassign
+      - unnamedResult
+  funlen:
+    lines: 100
+    statements: 50
+  # govet:
+    # enable:
+      # - fieldalignment
+  varnamelen:
+    ignore-decls:
+      - tx transaction.ConnTx
+      - tx ConnTx
+      - tx *sql.Tx
+      - id ulid.ULID
+  revive:
+    rules:
+      - name: if-return
+        disabled: true
+  gci:
+    sections:
+      - standard # Standard section: captures all standard packages.
+      - default # Default section: contains all imports that could not be matched to another section type.
+      - prefix(git.sallandpioneers.com/sallandpioneers/go-eboekhouden)
+  wsl: 
+    allow-cuddle-declarations: true
+linters:
+  # please, do not use `enable-all`: it's deprecated and will be removed soon.
+  # inverted configuration with `enable-all` and `disable` is not scalable during updates of golangci-lint
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - contextcheck
+    - decorder
+    - dogsled
+    - dupl
+    - durationcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - execinquery
+    # - exhaustive
+    # - exhaustruct
+    - exportloopref
+    - forcetypeassert
+    - funlen
+    - gci
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - goconst
+    - gocritic
+    - godot
+    - goerr113
+    # - gofmt
+    - gofumpt # stricter gofmt
+    - goimports
+    - gomnd
+    - goprintffuncname
+    - gosec
+    - grouper
+    - importas
+    # - interfacebloat
+    # - ireturn
+    - lll
+    - loggercheck
+    - maintidx
+    - makezero
+    - misspell
+    - nakedret
+    # - nestif
+    - nilerr
+    - nilnil
+    # - nlreturn
+    - noctx
+    - nolintlint
+    # - nonamedreturns
+    - nosprintfhostport
+    # - paralleltest
+    - prealloc
+    - predeclared
+    - promlinter
+    - reassign
+    - revive
+    - rowserrcheck
+    - sqlclosecheck
+    - stylecheck
+    - tagliatelle
+    - tenv
+    - testableexamples
+    - testpackage
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - usestdlibvars
+    # - varnamelen
+    - wastedassign
+    - whitespace
+    # - wrapcheck
+    - wsl
+  # don't enable:
+  # - gocyclo
+  # - godox
+
+output:
+  sort-results: true
+
+run:
+  timeout: 10m
+issues:
+  exclude-files:
+    - .*\.qtpl\.go$
+    - .*\.qtpl$
+  exclude-dirs:
+    - (^|/)internal/storage/mysql/queries/generated($|/)
+    - (^|/)internal/push/soap/generated($|/)
