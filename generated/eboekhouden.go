@@ -368,7 +368,7 @@ type GetArtikelenResponse struct {
 }
 
 type CResultGetAdministraties struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetAdministraties"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetAdministratiesResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -376,20 +376,18 @@ type CResultGetAdministraties struct {
 }
 
 type CError struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cError"`
-
 	LastErrorCode string `xml:"LastErrorCode,omitempty" json:"LastErrorCode,omitempty"`
 
 	LastErrorDescription string `xml:"LastErrorDescription,omitempty" json:"LastErrorDescription,omitempty"`
 }
 
 type ArrayOfCAdministratie struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Administraties"`
+
 	CAdministratie []*CAdministratie `xml:"cAdministratie,omitempty" json:"cAdministratie,omitempty"`
 }
 
 type CAdministratie struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cAdministratie"`
-
 	Bedrijf string `xml:"Bedrijf,omitempty" json:"Bedrijf,omitempty"`
 
 	Plaats string `xml:"Plaats,omitempty" json:"Plaats,omitempty"`
@@ -400,7 +398,7 @@ type CAdministratie struct {
 }
 
 type CSaldoFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cSaldoFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	GbCode string `xml:"GbCode,omitempty" json:"GbCode,omitempty"`
 
@@ -412,7 +410,7 @@ type CSaldoFilter struct {
 }
 
 type CResultGetSaldo struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetSaldo"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetSaldoResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -420,7 +418,7 @@ type CResultGetSaldo struct {
 }
 
 type CSaldiFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cSaldiFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	KostenPlaatsId int64 `xml:"KostenPlaatsId,omitempty" json:"KostenPlaatsId,omitempty"`
 
@@ -432,7 +430,7 @@ type CSaldiFilter struct {
 }
 
 type CResultGetSaldi struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetSaldi"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetSaldiResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -440,12 +438,12 @@ type CResultGetSaldi struct {
 }
 
 type ArrayOfCSaldo struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Saldi"`
+
 	CSaldo []*CSaldo `xml:"cSaldo,omitempty" json:"cSaldo,omitempty"`
 }
 
 type CSaldo struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cSaldo"`
-
 	ID int64 `xml:"ID,omitempty" json:"ID,omitempty"`
 
 	Code string `xml:"Code,omitempty" json:"Code,omitempty"`
@@ -456,7 +454,7 @@ type CSaldo struct {
 }
 
 type CFactuur struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFactuur"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap oFact"`
 
 	Factuurnummer string `xml:"Factuurnummer,omitempty" json:"Factuurnummer,omitempty"`
 
@@ -510,12 +508,12 @@ type CFactuur struct {
 }
 
 type ArrayOfCFactuurRegel struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Regels"`
+
 	CFactuurRegel []*CFactuurRegel `xml:"cFactuurRegel,omitempty" json:"cFactuurRegel,omitempty"`
 }
 
 type CFactuurRegel struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFactuurRegel"`
-
 	Aantal float64 `xml:"Aantal,omitempty" json:"Aantal,omitempty"`
 
 	Eenheid string `xml:"Eenheid,omitempty" json:"Eenheid,omitempty"`
@@ -534,7 +532,7 @@ type CFactuurRegel struct {
 }
 
 type CResultAddFactuur struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultAddFactuur"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap AddFactuurResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -542,7 +540,7 @@ type CResultAddFactuur struct {
 }
 
 type CFactuurFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFactuurFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	Factuurnummer string `xml:"Factuurnummer,omitempty" json:"Factuurnummer,omitempty"`
 
@@ -554,7 +552,7 @@ type CFactuurFilter struct {
 }
 
 type CResultGetFacturen struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetFacturen"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetFacturenResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -562,12 +560,12 @@ type CResultGetFacturen struct {
 }
 
 type ArrayOfCFactuurList struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Facturen"`
+
 	CFactuurList []*CFactuurList `xml:"cFactuurList,omitempty" json:"cFactuurList,omitempty"`
 }
 
 type CFactuurList struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFactuurList"`
-
 	Factuurnummer string `xml:"Factuurnummer,omitempty" json:"Factuurnummer,omitempty"`
 
 	Relatiecode struct {
@@ -591,7 +589,7 @@ type CFactuurList struct {
 }
 
 type CMutatie struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cMutatie"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap oMut"`
 
 	MutatieNr int64 `xml:"MutatieNr,omitempty" json:"MutatieNr,omitempty"`
 
@@ -619,12 +617,12 @@ type CMutatie struct {
 }
 
 type ArrayOfCMutatieRegel struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap MutatieRegels"`
+
 	CMutatieRegel []*CMutatieRegel `xml:"cMutatieRegel,omitempty" json:"cMutatieRegel,omitempty"`
 }
 
 type CMutatieRegel struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cMutatieRegel"`
-
 	BedragInvoer float64 `xml:"BedragInvoer,omitempty" json:"BedragInvoer,omitempty"`
 
 	BedragExclBTW float64 `xml:"BedragExclBTW,omitempty" json:"BedragExclBTW,omitempty"`
@@ -643,7 +641,7 @@ type CMutatieRegel struct {
 }
 
 type CResultAddMutatie struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultAddMutatie"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap AddMutatieResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -651,7 +649,7 @@ type CResultAddMutatie struct {
 }
 
 type CMutatieFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cMutatieFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	MutatieNr int64 `xml:"MutatieNr,omitempty" json:"MutatieNr,omitempty"`
 
@@ -667,7 +665,7 @@ type CMutatieFilter struct {
 }
 
 type CResultGetMutaties struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetMutaties"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetMutatiesResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -675,12 +673,12 @@ type CResultGetMutaties struct {
 }
 
 type ArrayOfCMutatieList struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Mutaties"`
+
 	CMutatieList []*CMutatieList `xml:"cMutatieList,omitempty" json:"cMutatieList,omitempty"`
 }
 
 type CMutatieList struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cMutatieList"`
-
 	MutatieNr int64 `xml:"MutatieNr,omitempty" json:"MutatieNr,omitempty"`
 
 	Soort *EnMutatieSoorten `xml:"Soort,omitempty" json:"Soort,omitempty"`
@@ -705,12 +703,12 @@ type CMutatieList struct {
 }
 
 type ArrayOfCMutatieListRegel struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap MutatieRegels"`
+
 	CMutatieListRegel []*CMutatieListRegel `xml:"cMutatieListRegel,omitempty" json:"cMutatieListRegel,omitempty"`
 }
 
 type CMutatieListRegel struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cMutatieListRegel"`
-
 	BedragInvoer float64 `xml:"BedragInvoer,omitempty" json:"BedragInvoer,omitempty"`
 
 	BedragExclBTW float64 `xml:"BedragExclBTW,omitempty" json:"BedragExclBTW,omitempty"`
@@ -731,8 +729,6 @@ type CMutatieListRegel struct {
 }
 
 type CGrootboekrekening struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cGrootboekrekening"`
-
 	ID int64 `xml:"ID,omitempty" json:"ID,omitempty"`
 
 	Code string `xml:"Code,omitempty" json:"Code,omitempty"`
@@ -745,7 +741,7 @@ type CGrootboekrekening struct {
 }
 
 type CResultAddGrootboekrekening struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultAddGrootboekrekening"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap AddGrootboekrekeningResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -753,7 +749,7 @@ type CResultAddGrootboekrekening struct {
 }
 
 type CGrootboekrekeningFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cGrootboekrekeningFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	ID int64 `xml:"ID,omitempty" json:"ID,omitempty"`
 
@@ -763,7 +759,7 @@ type CGrootboekrekeningFilter struct {
 }
 
 type CResultGetGrootboekrekeningen struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetGrootboekrekeningen"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetGrootboekrekeningenResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -771,12 +767,12 @@ type CResultGetGrootboekrekeningen struct {
 }
 
 type ArrayOfCGrootboekrekening struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Rekeningen"`
+
 	CGrootboekrekening []*CGrootboekrekening `xml:"cGrootboekrekening,omitempty" json:"cGrootboekrekening,omitempty"`
 }
 
 type CRelatie struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cRelatie"`
-
 	ID int64 `xml:"ID,omitempty" json:"ID,omitempty"`
 
 	AddDatum soap.XSDDateTime `xml:"AddDatum,omitempty" json:"AddDatum,omitempty"`
@@ -863,7 +859,7 @@ type CRelatie struct {
 }
 
 type CResultAddRelatie struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultAddRelatie"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap AddRelatieResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -871,7 +867,7 @@ type CResultAddRelatie struct {
 }
 
 type CRelatieFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cRelatieFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	Trefwoord string `xml:"Trefwoord,omitempty" json:"Trefwoord,omitempty"`
 
@@ -881,7 +877,7 @@ type CRelatieFilter struct {
 }
 
 type CResultGetRelaties struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetRelaties"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetRelatiesResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -889,11 +885,13 @@ type CResultGetRelaties struct {
 }
 
 type ArrayOfCRelatie struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Relaties"`
+
 	CRelatie []*CRelatie `xml:"cRelatie,omitempty" json:"cRelatie,omitempty"`
 }
 
 type CResultGetOpenPosten struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetOpenPosten"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetOpenPostenResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -901,12 +899,12 @@ type CResultGetOpenPosten struct {
 }
 
 type ArrayOfCOpenPost struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Openposten"`
+
 	COpenPost []*COpenPost `xml:"cOpenPost,omitempty" json:"cOpenPost,omitempty"`
 }
 
 type COpenPost struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cOpenPost"`
-
 	MutDatum soap.XSDDateTime `xml:"MutDatum,omitempty" json:"MutDatum,omitempty"`
 
 	MutFactuur string `xml:"MutFactuur,omitempty" json:"MutFactuur,omitempty"`
@@ -923,15 +921,13 @@ type COpenPost struct {
 }
 
 type CResultOpenSession struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultOpenSession"`
-
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
 	SessionID string `xml:"SessionID,omitempty" json:"SessionID,omitempty"`
 }
 
 type CResultAutoLogin struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultAutoLogin"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap AutoLoginResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -939,7 +935,7 @@ type CResultAutoLogin struct {
 }
 
 type CKostenplaatsFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cKostenplaatsFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	KostenplaatsID int64 `xml:"KostenplaatsID,omitempty" json:"KostenplaatsID,omitempty"`
 
@@ -949,7 +945,7 @@ type CKostenplaatsFilter struct {
 }
 
 type CResultGetKostenplaatsen struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetKostenplaatsen"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetKostenplaatsenResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -957,12 +953,12 @@ type CResultGetKostenplaatsen struct {
 }
 
 type ArrayOfCKostenplaats struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Kostenplaatsen"`
+
 	CKostenplaats []*CKostenplaats `xml:"cKostenplaats,omitempty" json:"cKostenplaats,omitempty"`
 }
 
 type CKostenplaats struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cKostenplaats"`
-
 	KostenplaatsId int64 `xml:"KostenplaatsId,omitempty" json:"KostenplaatsId,omitempty"`
 
 	Omschrijving string `xml:"Omschrijving,omitempty" json:"Omschrijving,omitempty"`
@@ -971,7 +967,7 @@ type CKostenplaats struct {
 }
 
 type CArtikelFilter struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cArtikelFilter"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cFilter"`
 
 	ArtikelID int64 `xml:"ArtikelID,omitempty" json:"ArtikelID,omitempty"`
 
@@ -985,7 +981,7 @@ type CArtikelFilter struct {
 }
 
 type CResultGetArtikelen struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cResultGetArtikelen"`
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap GetArtikelenResult"`
 
 	ErrorMsg *CError `xml:"ErrorMsg,omitempty" json:"ErrorMsg,omitempty"`
 
@@ -993,12 +989,12 @@ type CResultGetArtikelen struct {
 }
 
 type ArrayOfCArtikel struct {
+	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap Artikelen"`
+
 	CArtikel []*CArtikel `xml:"cArtikel,omitempty" json:"cArtikel,omitempty"`
 }
 
 type CArtikel struct {
-	XMLName xml.Name `xml:"http://www.e-boekhouden.nl/soap cArtikel"`
-
 	ArtikelID int64 `xml:"ArtikelID,omitempty" json:"ArtikelID,omitempty"`
 
 	ArtikelOmschrijving string `xml:"ArtikelOmschrijving,omitempty" json:"ArtikelOmschrijving,omitempty"`
