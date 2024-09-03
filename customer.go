@@ -28,8 +28,8 @@ func (service *Eboekhouden) CustomerCreate(ctx context.Context, customer *model.
 			return fmt.Errorf("add relatie: %w", ErrResponseEmpty)
 		}
 
-		if resp.AddRelatieResult.ErrorMsg != nil {
-			return fmt.Errorf("add relatie: %w", service.handleError(*resp.AddRelatieResult.ErrorMsg))
+		if err := service.handleError(*resp.AddRelatieResult.ErrorMsg); err != nil {
+			return fmt.Errorf("add relatie: %w", err)
 		}
 
 		customer.ID = resp.AddRelatieResult.Rel_ID
@@ -55,12 +55,65 @@ func (service *Eboekhouden) CustomerUpdate(ctx context.Context, customer *model.
 			return fmt.Errorf("update relatie: %w", ErrResponseEmpty)
 		}
 
-		if resp.UpdateRelatieResult != nil {
-			return fmt.Errorf("update relatie: %w", service.handleError(*resp.UpdateRelatieResult))
+		if err := service.handleError(*resp.UpdateRelatieResult); err != nil {
+			return fmt.Errorf("update relatie: %w", err)
 		}
 
 		return nil
 	})
+}
+
+func (service *Eboekhouden) CustomerGet(ctx context.Context) ([]model.Customer, error) {
+	var customers []model.Customer
+	err := service.do(ctx, func(session *session) error {
+		getRelatie := &eboekhouden.GetRelaties{
+			SessionID:     session.SessionID,
+			SecurityCode2: session.SecurityCode2,
+			CFilter:       &eboekhouden.CRelatieFilter{},
+		}
+
+		resp, err := service.client.GetRelatiesContext(ctx, getRelatie)
+		if err != nil {
+			return fmt.Errorf("get relation: %w", err)
+		}
+
+		if resp.GetRelatiesResult == nil {
+			return fmt.Errorf("get relation: %s", "relation result is empty")
+		}
+
+		if resp.GetRelatiesResult.Relaties == nil {
+			if resp.GetRelatiesResult.ErrorMsg != nil {
+				return fmt.Errorf("get relation: %s", resp.GetRelatiesResult.ErrorMsg.LastErrorCode)
+			}
+			return fmt.Errorf("get relation: %s", "relations empty")
+		}
+
+		for _, rel := range resp.GetRelatiesResult.Relaties.CRelatie {
+			customers = append(customers, model.Customer{
+				ID:         rel.ID,
+				Code:       rel.Code,
+				Business:   rel.Bedrijf,
+				Addresses:  model.CustomerAddresses{},
+				Phone:      "",
+				Email:      rel.Email,
+				Website:    "",
+				Notition:   "",
+				VAT:        "",
+				COC:        "",
+				Salutation: "",
+				IBAN:       "",
+				BIC:        "",
+				Type:       "",
+			})
+		}
+
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return customers, nil
 }
 
 func getRelation(customer *model.Customer) *eboekhouden.CRelatie {
