@@ -11,7 +11,7 @@ import (
 	"github.com/sallandpioneers/go-eboekhouden/model"
 )
 
-func (service *Eboekhouden) CustomerCreate(ctx context.Context, customer *model.Customer) error {
+func (service *Eboekhouden) CustomerCreate(ctx context.Context, customer model.Customer) error {
 	return service.do(ctx, func(session *session) error {
 		addRelatie := &eboekhouden.AddRelatie{
 			SessionID:     session.SessionID,
@@ -38,7 +38,7 @@ func (service *Eboekhouden) CustomerCreate(ctx context.Context, customer *model.
 	})
 }
 
-func (service *Eboekhouden) CustomerUpdate(ctx context.Context, customer *model.Customer) error {
+func (service *Eboekhouden) CustomerUpdate(ctx context.Context, customer model.Customer) error {
 	return service.do(ctx, func(session *session) error {
 		updateRelate := &eboekhouden.UpdateRelatie{
 			SessionID:     session.SessionID,
@@ -116,7 +116,7 @@ func (service *Eboekhouden) CustomerGet(ctx context.Context) ([]model.Customer, 
 	return customers, nil
 }
 
-func getRelation(customer *model.Customer) *eboekhouden.CRelatie {
+func getRelation(customer model.Customer) *eboekhouden.CRelatie {
 	return &eboekhouden.CRelatie{
 		ID:        customer.ID,
 		AddDatum:  soap.CreateXsdDateTime(time.Now(), true),

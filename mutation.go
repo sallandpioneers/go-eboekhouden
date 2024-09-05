@@ -10,7 +10,7 @@ import (
 	"github.com/sallandpioneers/go-eboekhouden/model"
 )
 
-func (service *Eboekhouden) MutationCreate(ctx context.Context, mutation *model.Mutation) error {
+func (service *Eboekhouden) MutationCreate(ctx context.Context, mutation model.Mutation) error {
 	return service.do(ctx, func(session *session) error {
 		mutationType := eboekhouden.EnMutatieSoorten(mutation.Type)
 
